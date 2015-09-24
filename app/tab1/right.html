@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Right
+    </h3>
+  </div>
+
+  <div class="panel-body">
+    <p>{{ vm.state }}</p>
+    <p ng-model="vm.state"></p>
+    <form>
+      <div class="form-group">
+        <label for="dob">Date Of Birth</label>
+        <input type="text"
+               class="form-control"
+               id="dob"
+               placeholder="Date of Birth"
+               ng-model="vm.data.item.dob">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="text"
+               class="form-control"
+               id="gender"
+               placeholder="Gender"
+               ng-model="vm.data.item.gender">
+      </div>
+      <div class="form-group">
+        <label for="occupation">Occupation</label>
+        <input type="text"
+               class="form-control"
+               id="occupation"
+               placeholder="Occupation"
+               ng-model="vm.data.item.occupation">
+      </div>
+      <div class="form-group">
+        <label for="hobbies">Hobbies</label>
+        <input type="text"
+               class="form-control"
+               id="hobbies"
+               placeholder="Hobbies"
+               ng-model="vm.data.item.hobbies">
+      </div>
+    </form>
+  </div>
+</div>

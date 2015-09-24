@@ -1,0 +1,29 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Name: {{ vm.data.item.firstName }} {{ vm.data.item.lastName }}</p>
+                <p>{{ vm.state }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <tabset justified="false">
+            <tab heading="Tab 1" select="vm.go('tabs.tab1')">
+                <div ui-view=""></div>
+            </tab>
+
+            <tab heading="Tab 2" select="vm.go('tabs.tab2')">
+                <div ui-view=""></div>
+            </tab>
+
+            <tab heading="Tab 3" select="vm.go('tabs.tab3')">
+                <div ui-view=""></div>
+            </tab>
+        </tabset>
+
+    </div>
+
+</div>
