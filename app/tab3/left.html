@@ -1,0 +1,29 @@
+<div class="box">
+  <div class="box-content">
+    <h1 class="tag-title text-center">Left</h1>
+    <hr />
+
+      <p>{{ vm.state }}</p>
+      <p ng-model="vm.state"></p>
+      <form>
+          <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text"
+                     class="form-control"
+                     id="firstName"
+                     placeholder="First Name"
+                     ng-model="vm.data.item.getSetFirstName"
+                     ng-model-options="{ getterSetter: true, updateOn: 'blur' }">
+          </div>
+          <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text"
+                     class="form-control"
+                     id="lastName"
+                     placeholder="Last Name"
+                     ng-model="vm.data.item.getSetLastName"
+                     ng-model-options="{ getterSetter: true, updateOn: 'blur' }">
+          </div>
+      </form>
+  </div>
+</div>

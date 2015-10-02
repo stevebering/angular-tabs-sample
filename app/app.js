@@ -41,9 +41,7 @@
                     this.shouldShowPrev = shouldShowPrev;
                     this.showPrev = showPrev;
 
-                    this.item = dataService.data.item;
                     this.data = dataService.data;
-                    this.items = dataService.data.items;
 
                     activate();
 
@@ -52,7 +50,7 @@
                     function getNextId(array, currentId) {
                         if (!array) { return; }
                         var index = array.indexOf(currentId);
-                        if (index >= 0 && index < array.length) {
+                        if (index >= 0 && index < array.length - 1) {
                             return array[index+1];
                         }
                     }
@@ -65,8 +63,12 @@
                         }
                     }
 
+                    function hasCurrentItem(self) {
+                        return self.data.item && self.data.item.id && self.data.keys && self.data.keys.length;
+                    }
+
                     function shouldShowNext() {
-                        if (this.data.item && this.data.item.id && this.data.items && this.data.items.length) {
+                        if (hasCurrentItem(this)) {
                             var nextId = getNextId(this.data.keys, this.data.item.id);
                             return typeof nextId !== 'undefined';
                         }
@@ -74,7 +76,7 @@
                     }
 
                     function shouldShowPrev() {
-                        if (this.data.item && this.data.item.id && this.data.items && this.data.items.length) {
+                        if (hasCurrentItem(this)) {
                             var prevId = getPreviousId(this.data.keys, this.data.item.id);
                             return typeof prevId !== 'undefined';
                         }
@@ -174,10 +176,10 @@
                         },
                         controllerAs: 'vm'
                     },
-                    "bottom@tabs.tab2": {
-                        templateUrl: 'app/tab2/bottom.html',
+                    "middle@tabs.tab2": {
+                        templateUrl: 'app/tab2/middle.html',
                         controller: function($scope, dataService) {
-                            this.state = 'Nested Tab2 Bottom';
+                            this.state = 'Nested Tab2 Middle';
                             this.item = dataService.data.item;
                         },
                         controllerAs: 'vm'
@@ -197,8 +199,8 @@
                 url: '/tab3',
                 views: {
                     "": { templateUrl: 'app/tab3/tab3.html' },
-                    "top@tabs.tab3": {
-                        templateUrl: 'app/tab3/top.html',
+                    "left@tabs.tab3": {
+                        templateUrl: 'app/tab3/left.html',
                         controller: function($scope, dataService) {
                             this.state = 'Nested Tab3 Top';
                             this.item = dataService.currentItem;
@@ -213,8 +215,8 @@
                         },
                         controllerAs: 'vm'
                     },
-                    "bottom@tabs.tab3": {
-                        templateUrl: 'app/tab3/bottom.html',
+                    "right@tabs.tab3": {
+                        templateUrl: 'app/tab3/right.html',
                         controller: function($scope, dataService) {
                             this.state = 'Nested Tab3 Bottom';
                             this.item = dataService.currentItem;
