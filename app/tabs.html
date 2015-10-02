@@ -3,8 +3,20 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Name: {{ vm.data.item.firstName }} {{ vm.data.item.lastName }}</p>
+                <p>Name:
+                    <span ng-bind="vm.data.item.getSetFirstName()"></span>
+                    <span ng-bind="vm.data.item.getSetLastName()"></span>
+                    <span class="badge" ng-show="vm.data.item.isDirty()">
+                        Dirty!
+                    </span>
+                </p>
                 <p>{{ vm.state }}</p>
+                <button type="button" class="btn btn-default"
+                        ng-disabled="!vm.shouldShowPrev()"
+                        ng-click="vm.showPrev()">Previous</button>
+                <button type="button" class="btn btn-default"
+                        ng-disabled="!vm.shouldShowNext()"
+                        ng-click="vm.showNext()">Next</button>
             </div>
         </div>
     </div>

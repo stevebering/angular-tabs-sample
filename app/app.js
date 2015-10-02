@@ -36,12 +36,62 @@
                         $state.go(route);
                     };
 
-                    this.item = dataService.currentItem;
+                    this.shouldShowNext = shouldShowNext;
+                    this.showNext = showNext;
+                    this.shouldShowPrev = shouldShowPrev;
+                    this.showPrev = showPrev;
+
+                    this.item = dataService.data.item;
                     this.data = dataService.data;
+                    this.items = dataService.data.items;
 
                     activate();
 
                     /////
+
+                    function getNextId(array, currentId) {
+                        if (!array) { return; }
+                        var index = array.indexOf(currentId);
+                        if (index >= 0 && index < array.length) {
+                            return array[index+1];
+                        }
+                    }
+
+                    function getPreviousId(array, currentId) {
+                        if (!array) { return; }
+                        var index = array.indexOf(currentId);
+                        if (index > 0) {
+                            return array[index-1];
+                        }
+                    }
+
+                    function shouldShowNext() {
+                        if (this.data.item && this.data.item.id && this.data.items && this.data.items.length) {
+                            var nextId = getNextId(this.data.keys, this.data.item.id);
+                            return typeof nextId !== 'undefined';
+                        }
+                        return false;
+                    }
+
+                    function shouldShowPrev() {
+                        if (this.data.item && this.data.item.id && this.data.items && this.data.items.length) {
+                            var prevId = getPreviousId(this.data.keys, this.data.item.id);
+                            return typeof prevId !== 'undefined';
+                        }
+                        return false;
+                    }
+
+                    function showNext() {
+                        var nextId = getNextId(this.data.keys, this.data.item.id);
+                        var promise = dataService.select(nextId);
+                        showBootstrapModal(promise, nextId);
+                    }
+
+                    function showPrev() {
+                        var prevId = getPreviousId(this.data.keys, this.data.item.id);
+                        var promise = dataService.select(prevId);
+                        showBootstrapModal(promise, prevId);
+                    }
 
                     function showBootstrapModal(promise, itemId) {
                         var modalInstance = $modal.open({
@@ -224,40 +274,78 @@
                     // we were notified
                     vm.messages.push({
                         type: 'info',
-                        message: result
+                        message: progress
                     });
 
                 });
             }
         });
 
+    var Contact = (function() {
+        'use strict';
+
+        var c = function() {
+
+        };
+
+        c.prototype.isDirty = function() {
+            return this._isDirty;
+        };
+
+        c.prototype.markDirty = function() {
+            this._isDirty = true;
+        };
+
+        c.prototype.propertyChanged = function(propName) {
+            this.markDirty();
+        };
+
+        c.prototype.getSetFirstName = function(newValue) {
+            if ( arguments.length ) {
+                // a value or null or undefined was pass, consider it a setter
+                if (newValue !== this.firstName) {
+                    // something is changing
+                    // a value or null or undefined was pass, consider it a setter
+                    this.firstName = newValue;
+                    this._isDirty = true;
+                }
+            }
+
+            return this.firstName;
+        };
+
+        c.prototype.getSetLastName = function(newValue) {
+            if (arguments.length) {
+                // a value or null or undefined was pass, consider it a setter
+                if (newValue !== this.lastName) {
+                    // something is changing
+                    this.lastName = newValue;
+                    this._isDirty = true;
+                }
+            }
+
+            return this.lastName;
+        };
+
+        return c;
+    })();
+
     angular.module('app')
         .factory('dataService', ['$http', '$q', '$timeout', function($http, $q, $timeout) {
-            var currentItem = {
-                    id: 6,
-                    firstName: 'Bob',
-                    lastName: 'Smith',
-                    address: {
-                        street: '789 Main Street',
-                        city: 'Anytown',
-                        state: 'WA',
-                        zip: '98100'
-                    },
-                    dob: '1/2/1943',
-                    gender: 'M',
-                    occupation: 'Retired',
-                    hobbies: [
-                        'fishing',
-                        'drinking coffee'
-                    ]
-                },
+            var currentItem = {},
+                contact = new Contact(),
                 items = [],
                 isLoading = false,
-                data = { item: currentItem, items: items };
+                data = {};
+
+            angular.extend(contact, currentItem);
+            data.item = contact;
+            data.items = items;
 
             var select = function(id) {
                 var self = this;
                 self.isLoading = true;
+                self.data.item = {};
 
                 var deferred = $q.defer();
                 $timeout(function() {
@@ -271,19 +359,21 @@
 
                     if (item) {
                         self.currentItem = item;
-                        self.data.item = item;
-                        deferred.resolve(item);
+                        var contact = new Contact();
+                        angular.extend(contact, item);
+                        self.data.item = contact;
+                        deferred.resolve(contact);
                         self.isLoading = false;
                     } else {
                         deferred.reject('Unable to locate item with id ' + id);
                     }
-                }, 15000);
+                }, 5000);
 
                 return deferred.promise;
             };
 
             function buildUp(self) {
-                self.items = [
+                var items = [
                     {
                         id: 1,
                         firstName: 'John',
@@ -341,7 +431,14 @@
                         ]
                     }
                 ];
-                self.data.items = self.items;
+
+                self.items = items;
+                self.data.keys = [];
+
+                for ( var i = 0; i < items.length; i++ ) {
+                    self.data.keys.push(items[i].id);
+                }
+                self.data.items = items;
             }
 
             var load = function() {
@@ -354,6 +451,7 @@
                         buildUp(self);
                     }
 
+                    self.data.items = self.items;
                     deferred.resolve(self.items);
                     self.isLoading = false;
                 }, 2000);
