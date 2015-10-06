@@ -23,15 +23,23 @@
 
     <div class="row">
         <tabset justified="false">
-            <tab heading="Tab 1" select="vm.go('tabs.tab1')">
+            <tab heading="Tab 1" disabled="{{ !vm.shouldShowTab1 }}" select="vm.go('tabs.tab1')">
                 <div ui-view=""></div>
             </tab>
 
-            <tab heading="Tab 2" select="vm.go('tabs.tab2')">
+            <tab heading="Tab 2" disabled="{{ !vm.shouldShowTab2 }}" select="vm.go('tabs.tab2')">
                 <div ui-view=""></div>
             </tab>
 
-            <tab heading="Tab 3" select="vm.go('tabs.tab3')">
+            <tab heading="Tab 3" disabled="{{ !vm.shouldShowTab3 }}" select="vm.go('tabs.tab3')">
+                <div ui-view=""></div>
+            </tab>
+            
+            <tab heading="Tab 4" disabled="{{ !vm.shouldShowTab4 }}" select="vm.go('tabs.tab4')">
+                <div ui-view=""></div>
+            </tab>
+            
+            <tab heading="Tab 5" disabled="{{ !vm.shouldShowTab5 }}" select="vm.go('tabs.tab5')">
                 <div ui-view=""></div>
             </tab>
         </tabset>

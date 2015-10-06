@@ -42,6 +42,13 @@
                     this.showPrev = showPrev;
 
                     this.data = dataService.data;
+                    this.shouldShowTab1 = true;
+                    this.shouldShowTab2 = true;
+                    this.shouldShowTab3 = false;
+                    this.shouldShowTab4 = true;
+                    this.shouldShowTab5 = true;
+                    
+                    this.privateData = 'secret';
 
                     activate();
 
@@ -224,6 +231,20 @@
                         controllerAs: 'vm'
                     }
                 }
+            })
+            
+            .state('tabs.tab4', {
+                url: '/tab4',
+                templateUrl: 'app/tab1/tab1Directive.html',
+                controller: function($scope, dataService) {
+                    this.state = 'Nested Tab 4'
+                    this.data = dataService.data;
+                }
+            })
+            
+            .state('tabs.tab5', {
+                url: '/tab5',
+                template: '<tab-fourth data="vm.data" private-data="vm.privateData"></tab-fourth>'
             })
         ;
 
