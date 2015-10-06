@@ -30,6 +30,7 @@
                 url: '/tabs',
                 templateUrl: 'app/tabs.html',
                 controller: function($scope, $state, dataService, ModalService, $modal) {
+                    var vm = this;
                     this.state = 'Tabs Route';
 
                     this.go = function(route) {
@@ -42,11 +43,11 @@
                     this.showPrev = showPrev;
 
                     this.data = dataService.data;
-                    this.shouldShowTab1 = true;
-                    this.shouldShowTab2 = true;
-                    this.shouldShowTab3 = false;
-                    this.shouldShowTab4 = true;
-                    this.shouldShowTab5 = true;
+                    vm.shouldShowTab1 = true;
+                    vm.shouldShowTab2 = true;
+                    vm.shouldShowTab3 = false;
+                    vm.shouldShowTab4 = true;
+                    vm.shouldShowTab5 = true;
                     
                     this.privateData = 'secret';
 
@@ -93,13 +94,25 @@
                     function showNext() {
                         var nextId = getNextId(this.data.keys, this.data.item.id);
                         var promise = dataService.select(nextId);
-                        showBootstrapModal(promise, nextId);
+                        showBootstrapModal(promise, nextId)
+                            .then(function(result) {
+                                setupTabs(nextId, result)
+                            });
                     }
 
                     function showPrev() {
                         var prevId = getPreviousId(this.data.keys, this.data.item.id);
                         var promise = dataService.select(prevId);
-                        showBootstrapModal(promise, prevId);
+                        showBootstrapModal(promise, prevId)
+                            .then(function(result) {
+                                setupTabs(prevId, result)
+                            });
+                    }
+                    
+                    function setupTabs(id, result) {
+                        result.promise.then(function(data) {
+                            vm.shouldShowTab3 = data.id && data.id === 2                        
+                        });
                     }
 
                     function showBootstrapModal(promise, itemId) {
@@ -121,17 +134,28 @@
                             }
                         });
 
-                        modalInstance.result.then(function(result) {
+                        return modalInstance.result.then(function(result) {
                             // called when we return successfully
+                            return {
+                                result: result, 
+                                promise: promise 
+                            };
                         }, function() {
                             // called when we dismiss instead of saying 'OK'
+                            return {
+                                result: 'Cancel',
+                                promise: promise
+                            };
                         });
                     }
 
                     function activate() {
                         dataService.load().then(function() {
                             var promise = dataService.select(1);
-                            showBootstrapModal(promise, 1);
+                            showBootstrapModal(promise, 1)
+                                .then(function(result) {
+                                    setupTabs(1, result)
+                                });
                         }).catch(function(e) {
 
                         });

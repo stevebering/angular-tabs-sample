@@ -31,11 +31,11 @@
                 <div ui-view=""></div>
             </tab>
 
-            <tab heading="Tab 3" disabled="{{ !vm.shouldShowTab3 }}" select="vm.go('tabs.tab3')">
+            <tab heading="Tab 3" disabled="!vm.shouldShowTab3" select="vm.go('tabs.tab3')">
                 <div ui-view=""></div>
             </tab>
             
-            <tab heading="Tab 4" disabled="{{ !vm.shouldShowTab4 }}" select="vm.go('tabs.tab4')">
+            <tab heading="Tab 4" disabled="!vm.shouldShowTab4" select="vm.go('tabs.tab4')">
                 <div ui-view=""></div>
             </tab>
             
