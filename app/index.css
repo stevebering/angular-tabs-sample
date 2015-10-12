@@ -56,3 +56,27 @@
         padding: 0 15px;
     }
 }
+
+.ui-dragging {
+    border: dashed 1px black;
+    background-color: #ccc;
+}
+
+.ui-droppable-hover {
+    border: dashed 1px gray;
+    background-color: #f0e68c;
+}
+
+.ui-draggable:hover {
+    border: dashed 1px black;
+    background-color: #ccc;
+    cursor: move;
+}
+
+.row-odd {
+    background-color: #efefef;
+}
+
+.droppable {
+    min-height: 25px;
+}

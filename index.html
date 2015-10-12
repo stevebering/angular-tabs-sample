@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css" />
 
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css">
     <link rel="stylesheet" href="app/index.css">
 </head>
 <body>
@@ -17,7 +18,37 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#sb-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                Angular Playground
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="sb-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li><a href="#/tabs">Tabs</a></li>
+                <li><a href="#/drag">Drag/drop</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div ui-view></div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 
 <script src="node_modules/modernizr/modernizr.js"></script>
 <script src="node_modules/angular/angular.js"></script>
@@ -29,6 +60,40 @@
 
 <script src="app/app.js"></script>
 <script src="app/directives.js"></script>
+<script src="app/draggable/draggableDirective.js"></script>
+
+<script type="text/ng-template" id="hospital-census-item.html">
+    <div class="col-sm-4 col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>{{vm.list.name}}</h3>
+                <div id="{{ vm.list.id }}"
+                    class="droppable"
+                    droppable
+                    droppable-model="vm"
+                    droppable-drop="vm.onListMove">
+                    <div ng-repeat="item in vm.list.items | index | orderBy: 'name' track by item.name"
+                         data-index="{{item.index}}"
+                         data-item="{{item}}"
+                         data-reject="{{item.reject}}"
+                         ng-class-odd="'row-odd'"
+                         ng-class-even="'row-even'"
+                         draggable>
+                        {{ item.name }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/ng-template" id="hospital-census.html">
+    <div ng-repeat="list in vm.lists | orderBy: 'name' track by list.id">
+        <draggable-list list="list" lists="vm.lists" 
+            droppable-drop="vm.onListMove" />
+    </div>    
+</script>
 
 </body>
 </html>

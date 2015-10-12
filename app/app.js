@@ -26,6 +26,58 @@
                 controllerAs: 'vm'
             })
 
+            .state('dragDrop', {
+                url: '/drag',
+                templateUrl: 'app/dragDrop.html',
+                controller: function() {
+                    var vm = this;
+
+                    vm.list1 = {
+                        id: 'list1',
+                        name: 'Software',
+                        items: [
+                            { name: 'JavaScript', reject: true },
+                            { name: 'C#' },
+                            { name: 'Sass' },
+                            { name: 'SQL' },
+                            { name: 'HTML' },
+                            { name: 'Java' }
+                        ]
+                    };
+
+                    vm.list2 = {
+                        id: 'list2',
+                        name: 'Beverages',
+                        items: [
+                            { name: 'Coffee' },
+                            { name: 'Scotch' },
+                            { name: 'Bourbon' }
+                        ]
+                    };
+                    
+                    vm.list3 = {
+                        id: 'list3',
+                        name: 'Greek Gods',
+                        items: [
+                            { name: 'Zeus' },
+                            { name: 'Athena' },
+                            { name: 'Poseidon' }    
+                        ]
+                    }
+                    
+                    vm.lists = [
+                        vm.list1,
+                        vm.list2,
+                        vm.list3
+                    ];
+
+                    vm.onListMove = function(list, item) {
+                        console.log('Moving item ' + item.name + ' to list ' + list.id);
+                    }
+                },
+                controllerAs: 'vm'
+            })
+
             .state('tabs', {
                 url: '/tabs',
                 templateUrl: 'app/tabs.html',
