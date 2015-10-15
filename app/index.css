@@ -80,3 +80,12 @@
 .droppable {
     min-height: 25px;
 }
+
+.panel-title .badge {
+    float: right;
+}
+
+.sortable-list {
+    height: 130px;
+    overflow-y: scroll;
+}

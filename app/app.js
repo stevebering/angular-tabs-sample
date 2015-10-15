@@ -41,7 +41,10 @@
                             { name: 'Sass' },
                             { name: 'SQL' },
                             { name: 'HTML' },
-                            { name: 'Java' }
+                            { name: 'Java' },
+                            { name: 'NodeJS' },
+                            { name: 'Ruby' },
+                            { name: 'LESS' }
                         ]
                     };
 
@@ -65,10 +68,33 @@
                         ]
                     }
                     
+                    vm.list4 = {
+                        id: 'list4',
+                        name: 'Vegetables',
+                        items: [
+                            { name: 'Brussel Sprouts' },
+                            { name: 'Cabbage' },
+                            { name: 'Broccoli' }    
+                        ]
+                    }
+                    
+                    vm.list5 = {
+                        id: 'list5',
+                        name: 'Fruits',
+                        items: [
+                            { name: 'Bananas' },
+                            { name: 'Oranges' },
+                            { name: 'Apples' },  
+                            { name: 'Pears' }  
+                        ]
+                    }
+                    
                     vm.lists = [
                         vm.list1,
                         vm.list2,
-                        vm.list3
+                        vm.list3,
+                        vm.list4, 
+                        vm.list5
                     ];
 
                     vm.onListMove = function(list, item) {

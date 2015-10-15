@@ -36,7 +36,7 @@
 
         <div class="collapse navbar-collapse" id="sb-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li>
                     <a href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li><a href="#/tabs">Tabs</a></li>
@@ -63,10 +63,15 @@
 <script src="app/draggable/draggableDirective.js"></script>
 
 <script type="text/ng-template" id="hospital-census-item.html">
-    <div class="col-sm-4 col-md-3">
+    <div class="col-xs-8 col-sm-4 col-md-3">
         <div class="panel panel-default">
-            <div class="panel-body">
-                <h3>{{vm.list.name}}</h3>
+            <div class="panel-heading"> 
+                <h3 class="panel-title">{{ vm.list.name }} 
+                    <span class="badge">{{vm.list.items.length}}</span>
+                </h3>
+            </div>
+            <div class="panel-body sortable-list">
+                <!--<h3>{{vm.list.name}}</h3>-->
                 <div id="{{ vm.list.id }}"
                     class="droppable"
                     droppable
