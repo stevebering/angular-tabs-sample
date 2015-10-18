@@ -57,43 +57,43 @@
                             { name: 'Bourbon' }
                         ]
                     };
-                    
+
                     vm.list3 = {
                         id: 'list3',
                         name: 'Greek Gods',
                         items: [
                             { name: 'Zeus' },
                             { name: 'Athena' },
-                            { name: 'Poseidon' }    
+                            { name: 'Poseidon' }
                         ]
                     }
-                    
+
                     vm.list4 = {
                         id: 'list4',
                         name: 'Vegetables',
                         items: [
                             { name: 'Brussel Sprouts' },
                             { name: 'Cabbage' },
-                            { name: 'Broccoli' }    
+                            { name: 'Broccoli' }
                         ]
                     }
-                    
+
                     vm.list5 = {
                         id: 'list5',
                         name: 'Fruits',
                         items: [
                             { name: 'Bananas' },
                             { name: 'Oranges' },
-                            { name: 'Apples' },  
-                            { name: 'Pears' }  
+                            { name: 'Apples' },
+                            { name: 'Pears' }
                         ]
                     }
-                    
+
                     vm.lists = [
                         vm.list1,
                         vm.list2,
                         vm.list3,
-                        vm.list4, 
+                        vm.list4,
                         vm.list5
                     ];
 
@@ -126,7 +126,7 @@
                     vm.shouldShowTab3 = false;
                     vm.shouldShowTab4 = true;
                     vm.shouldShowTab5 = true;
-                    
+
                     this.privateData = 'secret';
 
                     activate();
@@ -186,10 +186,10 @@
                                 setupTabs(prevId, result)
                             });
                     }
-                    
+
                     function setupTabs(id, result) {
                         result.promise.then(function(data) {
-                            vm.shouldShowTab3 = data.id && data.id === 2                        
+                            vm.shouldShowTab3 = data.id && data.id === 2
                         });
                     }
 
@@ -215,8 +215,8 @@
                         return modalInstance.result.then(function(result) {
                             // called when we return successfully
                             return {
-                                result: result, 
-                                promise: promise 
+                                result: result,
+                                promise: promise
                             };
                         }, function() {
                             // called when we dismiss instead of saying 'OK'
@@ -334,16 +334,16 @@
                     }
                 }
             })
-            
+
             .state('tabs.tab4', {
                 url: '/tab4',
-                templateUrl: 'app/tab1/tab1Directive.html',
+                templateUrl: 'app/tab4/tab4Directive.html',
                 controller: function($scope, dataService) {
                     this.state = 'Nested Tab 4'
                     this.data = dataService.data;
                 }
             })
-            
+
             .state('tabs.tab5', {
                 url: '/tab5',
                 template: '<tab-fourth data="vm.data" private-data="vm.privateData"></tab-fourth>'

@@ -61,44 +61,8 @@
 <script src="app/app.js"></script>
 <script src="app/directives.js"></script>
 <script src="app/draggable/draggableDirective.js"></script>
-
-<script type="text/ng-template" id="hospital-census-item.html">
-    <div class="col-xs-8 col-sm-4 col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading"> 
-                <h3 class="panel-title">{{ vm.list.name }} 
-                    <span class="badge">{{vm.list.items.length}}</span>
-                </h3>
-            </div>
-            <div class="panel-body sortable-list">
-                <!--<h3>{{vm.list.name}}</h3>-->
-                <div id="{{ vm.list.id }}"
-                    class="droppable"
-                    droppable
-                    droppable-model="vm"
-                    droppable-drop="vm.onListMove">
-                    <div ng-repeat="item in vm.list.items | index | orderBy: 'name' track by item.name"
-                         data-index="{{item.index}}"
-                         data-item="{{item}}"
-                         data-reject="{{item.reject}}"
-                         ng-class-odd="'row-odd'"
-                         ng-class-even="'row-even'"
-                         draggable>
-                        {{ item.name }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</script>
-
-<script type="text/ng-template" id="hospital-census.html">
-    <div ng-repeat="list in vm.lists | orderBy: 'name' track by list.id">
-        <draggable-list list="list" lists="vm.lists" 
-            droppable-drop="vm.onListMove" />
-    </div>    
-</script>
+<script src="app/draggable/droppableDirective.js"></script>
+<script src="app/draggable/draggableListDirective.js"></script>
 
 </body>
 </html>

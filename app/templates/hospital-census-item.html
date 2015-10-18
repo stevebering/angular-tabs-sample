@@ -1,0 +1,26 @@
+<div class="col-xs-8 col-sm-4 col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ vm.list.name }}
+                <span class="badge">{{vm.list.items.length}}</span>
+            </h3>
+        </div>
+        <div class="panel-body sortable-list">
+            <div id="{{ vm.list.id }}"
+                class="droppable"
+                droppable
+                droppable-model="vm"
+                droppable-drop="vm.onListMove">
+                <div ng-repeat="item in vm.list.items | index | orderBy: 'name' track by item.name"
+                     data-index="{{item.index}}"
+                     data-item="{{item}}"
+                     data-reject="{{item.reject}}"
+                     ng-class-odd="'row-odd'"
+                     ng-class-even="'row-even'"
+                     draggable>
+                    {{ item.name }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

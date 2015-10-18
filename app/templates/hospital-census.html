@@ -1,0 +1,4 @@
+<div ng-repeat="list in vm.lists | orderBy: 'name' track by list.id">
+    <draggable-list list="list" lists="vm.lists"
+        droppable-drop="vm.onListMove" />
+</div>    
