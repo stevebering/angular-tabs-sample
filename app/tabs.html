@@ -23,27 +23,10 @@
 
     <div class="row">
         <tabset justified="false">
-            <tab heading="Routed Tab" disabled="{{ !vm.shouldShowTab1 }}" select="vm.go('tabs.tab1')">
-                <div ui-view=""></div>
-            </tab>
-
-            <tab heading="Routed Tab w/ Layouts" disabled="{{ !vm.shouldShowTab2 }}" select="vm.go('tabs.tab2')">
-                <div ui-view=""></div>
-            </tab>
-
-            <tab heading="Toggled Tab" disabled="!vm.shouldShowTab3" select="vm.go('tabs.tab3')">
-                <div ui-view=""></div>
-            </tab>
-
-            <tab heading="Nested Directive" disabled="!vm.shouldShowTab4" select="vm.go('tabs.tab4')">
-                <div ui-view=""></div>
-            </tab>
-
-            <tab heading="Routed Directive" disabled="{{ !vm.shouldShowTab5 }}" select="vm.go('tabs.tab5')">
+            <tab ng-repeat="tab in vm.tabs" heading="{{ tab.title }}" disabled="tab.disabled" active="tab.active" select="vm.go(tab.id)">
                 <div ui-view=""></div>
             </tab>
         </tabset>
-
     </div>
 
 </div>
