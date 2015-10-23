@@ -1,6 +1,7 @@
-'use strict';
-
+/* jslint node: true */
 /* global angular: false, require: false */
+
+'use strict';
 
 require('es5-shim');
 require('es5-sham');
@@ -19,8 +20,8 @@ var router = require('./router'),
 var app = angular.module('app', ['ui.router', 'ui.bootstrap', 'angularModalService']);
 app.run(bootstrapper);
 app.config(router);
-app.controller('promiseWaiter', ['$scope', '$modalInstance', 'data', promiseWaiter]);
-app.factory('dataService', ['$http', '$q', '$timeout', dataService]);
+app.controller('promiseWaiter', promiseWaiter);
+app.factory('dataService', dataService);
 app.directive('alertPanel', alertPanel);
 
 require('./draggable/index');

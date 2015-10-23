@@ -1,9 +1,13 @@
+/* jslint node: true */
+/* global angular: false, require: false, module: false */
+
 'use strict';
 
-/* global angular: false, require: false, module: false */
 var Contact = require('./contact');
 
-module.exports = function($http, $q, $timeout) {
+dataService.$inject = ['$http', '$q', '$timeout'];
+
+function dataService($http, $q, $timeout) {
     var currentItem = {},
         contact = new Contact(),
         items = [],
@@ -138,4 +142,6 @@ module.exports = function($http, $q, $timeout) {
         select: select,
         data: data
     };
-};
+}
+
+module.exports = dataService;

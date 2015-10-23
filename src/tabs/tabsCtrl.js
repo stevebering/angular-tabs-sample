@@ -1,8 +1,15 @@
-//dependencies = ['$scope', '$state', '$modal', 'dataService', 'ModalService'];
+'use strict';
+
+/* global module: false, require: false */
+
 require('../dataService');
 require('../promiseWaiterCtrl');
 
-module.exports = function TabsController($scope, $state, $modal, dataService, ModalService) {
+module.exports = TabsController;
+
+TabsController.$inject = ['$scope', '$state', '$modal', 'dataService', 'ModalService'];
+
+function TabsController($scope, $state, $modal, dataService, ModalService) {
     var vm = this;
     vm.state = 'Tabs Route';
 

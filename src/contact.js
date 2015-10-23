@@ -1,6 +1,11 @@
-function Contact() {
+/* jslint node: true */
+/* global angular: false, require: false, module: false */
 
-}
+'use strict';
+
+module.exports = Contact;
+
+function Contact() { }
 
 Contact.prototype.isDirty = function() {
     return this._isDirty;
@@ -40,5 +45,3 @@ Contact.prototype.getSetLastName = function(newValue) {
 
     return this.lastName;
 };
-
-module.exports = Contact;

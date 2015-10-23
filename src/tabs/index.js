@@ -1,4 +1,7 @@
-/* global angular: false */
+/* jslint node: true */
+/* global angular: false, require: false, module: false */
+
+'use strict';
 
 var tabsCtrl = require('./tabsCtrl');
 var tabFourth = require('./tabFourthDirective');
@@ -7,8 +10,7 @@ var tabFourthMiddle = require('./tabFourthMiddleDirective');
 var tabFourthRight = require('./tabFourthRightDirective');
 
 angular.module('app')
-  .controller('TabsController',
-    ['$scope', '$state', '$modal', 'dataService', 'ModalService', tabsCtrl])
+  .controller('TabsController', tabsCtrl)
   .directive('tabFourth', tabFourth)
   .directive('tabFourthLeft', tabFourthLeft)
   .directive('tabFourthMiddle', tabFourthMiddle)

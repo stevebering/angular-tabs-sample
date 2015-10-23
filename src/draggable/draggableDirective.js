@@ -1,3 +1,8 @@
+/* jslint node: true */
+/* global angular: false, require: false, module: false */
+
+'use strict';
+
 module.exports = function() {
 
   var start = function(event, ui) {

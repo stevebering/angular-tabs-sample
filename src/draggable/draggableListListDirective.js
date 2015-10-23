@@ -1,3 +1,8 @@
+/* jslint node: true */
+/* global angular: false, require: false, module: false */
+
+'use strict';
+
 function Controller($log) {
 	var vm = this;
 

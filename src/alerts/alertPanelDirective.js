@@ -1,3 +1,5 @@
+Controller.$inject = ['$log'];
+
 function AlertPanelDirective() {
   return {
     restrict: 'E',
@@ -33,6 +35,5 @@ function getTemplateUrl(mode) {
   return '/app/tab4/alertlist.html';
 }
 
-Controller.$inject = ['$log'];
 
 module.exports = AlertPanelDirective;

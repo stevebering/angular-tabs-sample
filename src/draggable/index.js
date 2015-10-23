@@ -1,4 +1,7 @@
-/* global angular: false */
+/* jslint node: true */
+/* global angular: false, require: false, module: false */
+
+'use strict';
 
 var indexFilter = require('./indexFilter');
 var droppable = require('./droppableDirective');
