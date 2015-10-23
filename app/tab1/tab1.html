@@ -1,18 +1,11 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4" ui-view="left"></div>
-        <div class="col-md-4" ui-view="middle"></div>
-        <div class="col-md-4" ui-view="right"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
+          <h3>People</h3>
           <alert-panel alerts="vm.data" mode="multiple"></alert-panel>
         </div>
-        <div class="col-md-4">
-          <alert-panel alerts="vm.data" mode="single"></alert-panel>
-        </div>
+        <div class="col-md-3" ui-view="left"></div>
+        <div class="col-md-4" ui-view="middle"></div>
+        <div class="col-md-3" ui-view="right"></div>
     </div>
-
-    <div class="row"></div>
 </div>
