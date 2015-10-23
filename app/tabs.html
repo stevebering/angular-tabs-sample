@@ -3,20 +3,28 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Name:
-                    <span ng-bind="vm.data.item.getSetFirstName()"></span>
-                    <span ng-bind="vm.data.item.getSetLastName()"></span>
-                    <span class="badge" ng-show="vm.data.item.isDirty()">
-                        Dirty!
-                    </span>
-                </p>
-                <p>{{ vm.state }}</p>
-                <button type="button" class="btn btn-default"
-                        ng-disabled="!vm.shouldShowPrev()"
-                        ng-click="vm.showPrev()">Previous</button>
-                <button type="button" class="btn btn-default"
-                        ng-disabled="!vm.shouldShowNext()"
-                        ng-click="vm.showNext()">Next</button>
+               <div class="col-md-6">
+
+                  <p>Name:
+                      <span ng-bind="vm.data.item.getSetFirstName()"></span>
+                      <span ng-bind="vm.data.item.getSetLastName()"></span>
+                      <span class="badge" ng-show="vm.data.item.isDirty()">
+                          Dirty!
+                      </span>
+                  </p>
+                  <p>{{ vm.state }}</p>
+                  <button type="button" class="btn btn-default"
+                          ng-disabled="!vm.shouldShowPrev()"
+                          ng-click="vm.showPrev()">Previous</button>
+                  <button type="button" class="btn btn-default"
+                          ng-disabled="!vm.shouldShowNext()"
+                          ng-click="vm.showNext()">Next</button>
+
+               </div>
+
+               <div class="col-md-6">
+                  <alert-panel alerts="vm.data" mode="single"></alert-panel>
+               </div>
             </div>
         </div>
     </div>

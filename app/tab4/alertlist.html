@@ -1,0 +1,4 @@
+<!--<h1>Multiple</h1>-->
+<div ng-repeat='alert in vm.alerts.items' ng-class="{ 'active-item': alert.id === vm.alerts.item.id }">
+  {{ alert.id }}: {{ alert.firstName }} {{ alert.lastName}}
+</div>

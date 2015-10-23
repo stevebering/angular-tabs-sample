@@ -89,3 +89,7 @@
     height: 130px;
     overflow-y: scroll;
 }
+
+.active-item {
+  background-color: #d5d5d5;
+}
