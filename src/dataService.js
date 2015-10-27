@@ -4,6 +4,7 @@
 'use strict';
 
 var Contact = require('./contact');
+var Data = require('./dataStore.json');
 
 dataService.$inject = ['$http', '$q', '$timeout'];
 
@@ -49,65 +50,7 @@ function dataService($http, $q, $timeout) {
     };
 
     function buildUp(self) {
-        var items = [
-            {
-                id: 1,
-                firstName: 'John',
-                lastName: 'Doe',
-                address: {
-                    street: '123 Any Street',
-                    city: 'Anytown',
-                    state: 'WA',
-                    zip: '98100'
-                },
-                dob: '1/2/1934',
-                gender: 'M',
-                occupation: 'Old Guy',
-                hobbies: [
-                    'fishing',
-                    'gabbing',
-                    'drinking coffee'
-                ]
-            },
-            {
-                id: 2,
-                firstName: 'Missy',
-                lastName: 'Belle',
-                address: {
-                    street: '234 Some Street',
-                    city: 'Sometown',
-                    state: 'WA',
-                    zip: '98200'
-                },
-                dob: '6/7/1957',
-                gender: 'F',
-                occupation: 'Debutante',
-                hobbies: [
-                    'shopping',
-                    'gossipping'
-                ]
-            },
-            {
-                id: 3,
-                firstName: 'Devon',
-                lastName: 'Dude',
-                address: {
-                    street: '456 10th Street',
-                    city: 'Narrowtown',
-                    state: 'WA',
-                    zip: '98300'
-                },
-                dob: '8/9/1982',
-                gender: 'M',
-                occupation: 'Hacker',
-                hobbies: [
-                    'coding',
-                    'caffeine',
-                    'making stuff'
-                ]
-            }
-        ];
-
+        var items = Data;
         self.items = items;
         self.data.keys = [];
 
@@ -140,7 +83,8 @@ function dataService($http, $q, $timeout) {
         items: items,
         load: load,
         select: select,
-        data: data
+        data: data,
+        isLoading: isLoading
     };
 }
 
