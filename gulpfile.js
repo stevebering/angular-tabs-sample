@@ -29,7 +29,9 @@ var browserify = require('browserify')
  * in the background at all time. Does not include release preparation
 */
 
-var liveReload = true;
+var paths = {
+  js: ['src/**/*.js', 'test/**/*.js']
+}
 
 gulp.task('clean', function() {
   return gulp.src(['./app/ngmin', './app/dist'], { read: false })
@@ -57,12 +59,9 @@ gulp.task('browserify', ['lint'], /*, 'unit'],*/ function() {
     .pipe(connect.reload());
 });
 
-gulp.task('server', ['browserify'], function() {
-  gulp.start('server');
-  gulp.watch([
-    'src/**/*.js',
-    'test/**/*.js',
-  ], ['fast']);
+
+gulp.task('watch', function() {
+   gulp.watch(paths.js, ['fast']);
 });
 
 gulp.task('fast', ['clean'], function() {

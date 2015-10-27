@@ -20,7 +20,7 @@ function Controller($log) {
   var vm = this;
 
   function init() {
-    $log.debug(new Date() + ': Starting alertDirective in mode: ' + vm.mode + ' with data:', vm.alerts);
+    $log.debug(new Date() + ': Starting alertDirective (mode: ' + vm.mode + ')', vm.alerts);
   }
 
   init();
