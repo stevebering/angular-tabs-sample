@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pre-start": "gulp watch",
-    "start": "live-server"
+    "start": "gulp watch"
   },
   "author": "Steve Bering",
   "license": "ISC",
@@ -23,6 +22,7 @@
     "glob": "^5.0.15",
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
+    "gulp-connect": "^2.2.0",
     "gulp-eslint": "^1.0.0",
     "gulp-karma": "0.0.5",
     "gulp-mocha": "^2.1.3",

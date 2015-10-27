@@ -29,8 +29,12 @@ var browserify = require('browserify')
  * in the background at all time. Does not include release preparation
 */
 
+var livereload = true;
+
 var paths = {
-  js: ['src/**/*.js', 'test/**/*.js']
+  js: ['src/**/*.js', 'test/**/*.js'],
+  html: ['index.html', 'app/**/*.html'],
+  css: ['app/**/*.css']
 }
 
 gulp.task('clean', function() {
@@ -59,9 +63,27 @@ gulp.task('browserify', ['lint'], /*, 'unit'],*/ function() {
     .pipe(connect.reload());
 });
 
+gulp.task('server', ['browserify'], function() {
+  connect.server({
+    livereload: livereload,
+  });
+});
+
+gulp.task('html', function() {
+  gulp.src(paths.html)
+    .pipe(connect.reload());
+});
+
+gulp.task('css', function() {
+  gulp.src(paths.css)
+    .pipe(connect.reload());
+});
 
 gulp.task('watch', function() {
+   gulp.start('server');
    gulp.watch(paths.js, ['fast']);
+   gulp.watch(paths.html, ['html']);
+   gulp.watch(paths.css, ['css']);
 });
 
 gulp.task('fast', ['clean'], function() {
